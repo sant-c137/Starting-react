@@ -1,11 +1,43 @@
+import { Children } from 'react'
 import './App.css'
 import { TwitterFollowCard } from './TwitterfollowCard.jsx'
+
+const users = [
+    {
+        userName: 'midudev',
+        name: 'Miguel Duran',
+        isFollowing: true 
+    },
+    {
+        userName: 'sant',
+        name: 'Santiago Montaño',
+        isFollowing: false 
+    },
+    {
+        userName: 'prueba',
+        name: 'Pepito Perez',
+        isFollowing: true 
+    },
+]
 
 export function App () {
     return (
         <section className = "App" >
-            <TwitterFollowCard userName = "midudev" name ="Miguel Angel"/> 
-            <TwitterFollowCard userName = "elonmusk" name ="Elon Musk"/> 
+            {
+                users.map(user => {
+                    const { name, userName, isFollowing} = user
+                    return (
+                        <TwitterFollowCard
+                            key = {userName}
+                            userName = {userName}
+                            initialIsFollowing = {isFollowing}
+                        >
+                            {name}
+                        </TwitterFollowCard>
+                    )
+                })
+            }
+
         </section>
         
     )
